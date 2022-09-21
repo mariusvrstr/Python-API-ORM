@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# SQL Lite DB files
+*.db
+
 # C extensions
 *.so
 
