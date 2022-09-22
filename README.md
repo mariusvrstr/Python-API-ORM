@@ -18,4 +18,10 @@ Python based FastAPI and SQLAlchemy example
 
 ## API Backlog (FastAPI)
 - [ ] Multiple routers
-- [ ] Validations
+- [ ] Validation
+- [ ] Authentication (API Key)
+- [ ] Parameters (Query, path & body)
+- [ ] Error handling
+- [ ] Async Await
+- [ ] Swagger documentation
+- [ ] Config / Variable Replacement
