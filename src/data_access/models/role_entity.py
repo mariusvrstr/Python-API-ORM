@@ -10,16 +10,13 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Column
 import uuid
 
-class user_entity(Base):
-    __tablename__ = 'Users'
+class role_entity(Base):
+    __tablename__ = 'Roles'
 
     #id = Column('Id', UUID(),primary_key=True,default=uuid.uuid4)
     id = Column(Integer, primary_key=True, index=True)
-    username = Column(String)
-    email = Column(String)
-    password = Column(String)
+    name = Column(String)
 
-    # Foreign Key Many Side
-    roles = relationship('roles_entity', back_populates='')
-
-
+    # Foreign Key One Side
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship('user_entity', back_populates='roles')
