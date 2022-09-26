@@ -19,7 +19,9 @@ class user_entity(Base):
     email = Column(String)
     password = Column(String)
 
-    # Foreign Key Many Side
-    roles = relationship('roles_entity', back_populates='')
+    # Foreign Key - One Side Oposed to Many
+    account_id = Column(Integer, ForeignKey('Accounts.id'))
+    account = relationship('account_entity', back_populates='Users')
+
 
 

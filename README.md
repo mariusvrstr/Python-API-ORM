@@ -4,7 +4,7 @@ Python based FastAPI and SQLAlchemy example
 
 ## Setup
 1. Run setup.ps1 powershell script
-2. Install [TablePlus](https://tableplus.com/) for SQL Lite -OR- [SSMS]() for SQL Server
+2. Install [TablePlus](https://tableplus.com/) for SQL Lite -OR- [SSMS](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms) for SQL Server
 
 ## ORM Backlog (SQLAlchemy)
 - [X] Code first db generation
@@ -12,7 +12,7 @@ Python based FastAPI and SQLAlchemy example
 - [ ] SQL Server Database Example
 - [ ] GUID Id's
 - [ ] Unit of Work (Transactions + Repository Session sharing)
-- [ ] Foreign Keys
+- [X] Foreign Keys
 - [ ] Crud interactions
 - [ ] Code Migrations (CI/CD)
 

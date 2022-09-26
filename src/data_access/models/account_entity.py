@@ -10,13 +10,13 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Column
 import uuid
 
-class role_entity(Base):
-    __tablename__ = 'Roles'
+class account_entity(Base):
+    __tablename__ = 'Accounts'
 
     #id = Column('Id', UUID(),primary_key=True,default=uuid.uuid4)
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String)
+    number = Column(String)
 
-    # Foreign Key One Side
-    user_id = Column(Integer, ForeignKey('user.id'))
-    user = relationship('user_entity', back_populates='roles')
+    # Foreign Key - Many Side Opposed to One
+    users = relationship('user_entity', back_populates='')
