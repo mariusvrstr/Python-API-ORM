@@ -1,5 +1,5 @@
 from src.application.models.account import Account
-from src.data_access.common.repository_base import RepositoryBase
+from src.data_access.database.common.repository_base import RepositoryBase
 
 class AccountRepository(RepositoryBase):
 

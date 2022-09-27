@@ -1,5 +1,4 @@
 
-
 class Account():
     id = None
     name = None
@@ -9,7 +8,3 @@ class Account():
         self.name = name
         self.account_number = account_number
 
-    def __init__(self, id, name, account_number) -> None:
-        self.id = id
-        self.name = name
-        self.account_number = account_number

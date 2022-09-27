@@ -1,4 +1,4 @@
-
+from src.application.models.account import Account
 
 class User():
     id = None
@@ -7,5 +7,8 @@ class User():
     email = None
     account = None
 
-    def __init__(self) -> None:
-        pass
+    def __init__(self, name, username, email, account) -> None:
+        self.name = name
+        self.username = username
+        self.email = email
+        self.account = account

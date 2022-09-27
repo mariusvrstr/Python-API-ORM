@@ -2,7 +2,7 @@ from ast import Index
 import email
 from tokenize import String
 from unicodedata import name
-from src.data_access.common.database import Base
+from src.data_access.database.common.database import Base
 # from src.data_access.common.database import UUID
 from sqlalchemy.sql.schema import ForeignKey
 from sqlalchemy.sql.sqltypes import Integer, String
