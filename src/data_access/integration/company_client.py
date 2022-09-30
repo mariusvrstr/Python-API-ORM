@@ -1,4 +1,4 @@
-from src.data_access.clients.common.client_base import ClientBase
+from src.data_access.integration.common.client_base import ClientBase
 
 class CompanyClient(ClientBase):
 
