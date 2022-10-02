@@ -1,6 +1,10 @@
 # Python-API-ORM
 Python based FastAPI and SQLAlchemy example
 
+## Design Patterns
+- [X] Repository Pattern - Abstract database access
+- [X] Builder Pattern - Generate sample test with fluent objects
+- [ ] Unit of Work - Ensure there are no partial database changes all in or all out
 
 ## Setup
 1. Run setup.ps1 powershell script
