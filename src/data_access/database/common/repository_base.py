@@ -1,10 +1,11 @@
 from abc import ABC
+from sqlalchemy.orm import Session
 
 class RepositoryBase(ABC):
     context = None
 
-    def __init__(self, context) -> None:
+    def __init__(self, context: Session) -> None:
         self.context = context
 
-    def save(self):
-        self.save()
+    def commit(self):
+        self.context.commit()

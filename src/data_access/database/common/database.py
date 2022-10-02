@@ -1,9 +1,10 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy import types
 from sqlalchemy.dialects.mysql.base import MSBinary
 import uuid
+# from sqlalchemy import MetaData
 
 ## SQL Server
 ## SQLALCHEMY_DATABASE_URL = "mssql://*localhost*/*test_db*?trusted_connection=yes'"
@@ -43,10 +44,15 @@ class UUID(types.TypeDecorator):
         return False
 '''
 
-def get_db():
+def get_db_Session() -> Session:
     db = session_local()
 
+    return db
+
+    '''
+    
     try:
         yield db
     finally:
         db.close()
+    '''
