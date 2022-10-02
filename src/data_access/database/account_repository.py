@@ -18,12 +18,8 @@ class AccountRepository(RepositoryBase):
         return account
 
     def get_account(self, account_number) -> Account:
-        accounts = self.context.query(AccountEntity).all() #TODO: Must be an select single # filter(account_number = account_number)
-
-        if (len(accounts) == 0):
-            return None
-
-        account = accounts.pop()        
+        account = self.context.query(AccountEntity).filter(AccountEntity.account_number == account_number).first() #TODO: Must be an select single # filter(account_number = account_number)
+    
         mapped_account = Account(account.name, account.account_number)
         mapped_account.id = account.id
 
