@@ -29,8 +29,6 @@ class AdminService():
         hash_object = hashlib.sha256(new_user_req.password.encode('utf-8'))
         hash_password = hash_object.hexdigest()
 
-        # Session.refresh(self.context)
-
         account = self.account_repo.get_account(new_user_req.account_number)
 
         if (account == None):
