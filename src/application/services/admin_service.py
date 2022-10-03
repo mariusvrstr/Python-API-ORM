@@ -29,12 +29,7 @@ class AdminService():
         hash_object = hashlib.sha256(new_user_req.password.encode('utf-8'))
         hash_password = hash_object.hexdigest()
 
-        account = self.account_repo.get_account(new_user_req.account_number)
-
-        if (account == None):
-            raise ValueError(f'Unable to add user [{new_user_req.name}] to account [{new_user_req.account_number}] as the account does not exist.')
-
-        user = self.user_repo.add_user(new_user_req.name, new_user_req.username, hash_password, account.id)
+        user = self.user_repo.add_user(new_user_req.name, new_user_req.username, hash_password, new_user_req.account_id)
         return user
 
     def get_user(self, username):

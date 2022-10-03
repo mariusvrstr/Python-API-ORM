@@ -38,6 +38,7 @@ class UserEntity(Base):
 
     # Foreign Key - One Side Oposed to Many
     account_id = Column(Integer, ForeignKey('Accounts.id'))
+    #TODO: Add Account lookup object that will populate through the account_id link
 
     def create(self, name, username, password_hash, account_id):
         self.name = name

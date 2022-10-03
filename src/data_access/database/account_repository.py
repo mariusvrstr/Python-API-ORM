@@ -5,22 +5,29 @@ from sqlalchemy.sql import select
 
 class AccountRepository(RepositoryBase):
 
+    def map(self, account: AccountEntity) -> Account:
+        if (account == None):
+            return None
+
+        mapped = Account(account.name, account.account_number)
+        mapped.id = account.id
+        return mapped
+
     def __init__(self, context ) -> None:
         super().__init__(context)
 
     def add_account(self, name, account_number):
+        #TODO: Why is the below not returning the new object with ID?
         new_account = AccountEntity().create(name, account_number)
         account = self.context.add(new_account)
-        return account
+
+        return self.map(account)
 
     def get_account_by_id(self, id):
         account = self.context.get(AccountEntity, id)
-        return account
+        return self.map(account)
 
     def get_account(self, account_number) -> Account:
         account = self.context.query(AccountEntity).filter(AccountEntity.account_number == account_number).first() #TODO: Must be an select single # filter(account_number = account_number)
-    
-        mapped_account = Account(account.name, account.account_number)
-        mapped_account.id = account.id
 
-        return mapped_account
+        return self.map(account)

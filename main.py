@@ -14,14 +14,8 @@ sample_account = AccountBuilder().inoxico().build()
 sample_user = UserBuilder().super_user().build()
 
 def populate():
-    admin_service.add_account(sample_account.name, sample_account.account_number)
-    '''
-    The below commit is a violation of the Unit of Work pattern, I am expecting that doing a select query
-    in a shared session that any uncomitted (but added in same session) data will still return but this does not
-    seem to work. It might work with RAW SQL statements but not using the ORM abstractions. Need a solution for this.
-    '''
-    context.commit() # Hack to bypass session limitations
-    new_user_req = NewUserRequest(sample_user.name, sample_user.username, 'Password123', sample_account.account_number)
+    new_account = admin_service.add_account(sample_account.name, sample_account.account_number)
+    new_user_req = NewUserRequest(sample_user.name, sample_user.username, 'Password123', new_account.id if new_account is not None else None)
     admin_service.add_user(new_user_req)
 
 def main():    

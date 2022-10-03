@@ -4,11 +4,9 @@ class User():
     id = None
     name = None
     username = None
-    email = None
     account = None
 
-    def __init__(self, name, username, email, account) -> None:
+    def __init__(self, name, username, account: Account) -> None:
         self.name = name
         self.username = username
-        self.email = email
         self.account = account
