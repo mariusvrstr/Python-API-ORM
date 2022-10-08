@@ -7,5 +7,5 @@ class RepositoryBase(ABC):
     def __init__(self, context: Session) -> None:
         self.context = context
 
-    def commit(self):
-        self.context.commit()
+    def sync(self):
+        self.context.flush()

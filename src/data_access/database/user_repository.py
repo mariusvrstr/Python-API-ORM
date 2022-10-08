@@ -14,9 +14,11 @@ class UserRepository(RepositoryBase):
         super().__init__(context)
 
     def add_user(self, name, username, password_hash, account_id):        
-        #TODO: Why is the below not returning the new object with ID?
         new_user = UserEntity().create(name, username, password_hash, account_id)
-        user = self.context.add(new_user)
+        self.context.add(new_user)
+        self.sync()
+
+        user = self.get_user(username)
         return user
 
     def get_user_by_id(self, id):

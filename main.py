@@ -34,7 +34,6 @@ def main():
 
     except Exception as ex:
         print(f"Oops! {ex.__class__} occurred. Details: {ex}")  
-        context.flush() # Discard any database changes
     finally:
         context.close() # Always close the database connection
 

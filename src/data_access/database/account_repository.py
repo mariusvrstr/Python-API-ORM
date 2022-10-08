@@ -17,10 +17,11 @@ class AccountRepository(RepositoryBase):
         super().__init__(context)
 
     def add_account(self, name, account_number):
-        #TODO: Why is the below not returning the new object with ID?
         new_account = AccountEntity().create(name, account_number)
-        account = self.context.add(new_account)
-
+        self.context.add(new_account)
+        self.sync()
+        account = self.get_account(account_number)
+        
         return self.map(account)
 
     def get_account_by_id(self, id):
