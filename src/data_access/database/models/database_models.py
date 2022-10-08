@@ -21,7 +21,8 @@ class AccountEntity(Base):
     # Foreign Key - Many Side Opposed to One
     users = relationship('UserEntity', back_populates='')
 
-    def create(self, name, account_number):
+    def create(self, name, account_number, id = None):
+        self.id = id
         self.name = name
         self.account_number = account_number
 
@@ -40,10 +41,11 @@ class UserEntity(Base):
     account_id = Column(Integer, ForeignKey('Accounts.id'))
     #TODO: Add Account lookup object that will populate through the account_id link
 
-    def create(self, name, username, password_hash, account_id):
+    def create(self, name, username, password_hash, account_id, id = None):
         self.name = name
         self.username = username
         self.password_hash = password_hash
         self.account_id = account_id
-
+        self.id = id
+        
         return self

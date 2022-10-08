@@ -1,3 +1,5 @@
+from src.application.models.account import Account
+from src.application.models.user import User
 from src.data_access.database.account_repository import AccountRepository
 from src.data_access.database.user_repository import UserRepository
 from src.application.models.requests.new_user_request import NewUserRequest
@@ -15,23 +17,20 @@ class AdminService():
         self.account_repo = AccountRepository(context)
         self.user_repo = UserRepository(context)
 
-    def add_account(self, account_name, account_number):
-        account = self.account_repo.add_account(account_name, account_number)
-        return account
+    def add_account(self, account: Account):
+        return self.account_repo.add(account)
 
     def get_account(self, account_number):
-        account = self.account_repo.get_account(account_number)
-        return account
+        return self.account_repo.get_account(account_number)
 
     def add_user(self, new_user_req: NewUserRequest):
+        user = User(new_user_req.name, new_user_req.username, new_user_req.account_id)
 
         # Hash Password
         hash_object = hashlib.sha256(new_user_req.password.encode('utf-8'))
         hash_password = hash_object.hexdigest()
 
-        user = self.user_repo.add_user(new_user_req.name, new_user_req.username, hash_password, new_user_req.account_id)
-        return user
+        return self.user_repo.add_user_with_password(user, hash_password)        
 
     def get_user(self, username):
-        user = self.user_repo.get_user(username)
-        return user
+        return self.user_repo.get_user(username)

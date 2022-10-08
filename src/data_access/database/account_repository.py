@@ -5,28 +5,23 @@ from sqlalchemy.sql import select
 
 class AccountRepository(RepositoryBase):
 
-    def map(self, account: AccountEntity) -> Account:
+    def map_to_business(self, account: AccountEntity) -> Account:
         if (account == None):
             return None
 
-        mapped = Account(account.name, account.account_number)
-        mapped.id = account.id
+        mapped = Account(account.name, account.account_number, account.id)
         return mapped
 
-    def __init__(self, context ) -> None:
-        super().__init__(context)
-
-    def add_account(self, name, account_number):
-        new_account = AccountEntity().create(name, account_number)
-        self.context.add(new_account)
-        self.sync()
-        account = self.get_account(account_number)
+    def map_to_database(self, account: Account) -> AccountEntity:
+        if (account == None):
+            return None
         
-        return self.map(account)
+        mapped = AccountEntity().create(account.name, account.account_number, account.id)
+        return mapped
 
-    def get_account_by_id(self, id):
-        account = self.context.get(AccountEntity, id)
-        return self.map(account)
+
+    def __init__(self, context) -> None:
+        super().__init__(context, AccountEntity, Account)
 
     def get_account(self, account_number) -> Account:
         account = self.context.query(AccountEntity).filter(AccountEntity.account_number == account_number).first() #TODO: Must be an select single # filter(account_number = account_number)

@@ -4,25 +4,25 @@ from src.data_access.database.common.repository_base import RepositoryBase
 
 class UserRepository(RepositoryBase):   
 
-    def map(self, user: UserEntity) -> User:
+    def map_to_business(self, user: UserEntity) -> User:
         if (user == None):
             return None
 
-        mapped = User(user.name, user.name, None) #TODO: Replace the None with a mapped version of lookup value
+        mapped = User(user.name, user.username, user.account_id)
+        return mapped
+
+    def map_to_database(self, user: User) -> UserEntity:
+        raise ValueError(f'Unable to add map user directly, password hash needs to be calculated first. Username [{user.username}]') 
 
     def __init__(self, context) -> None:
-        super().__init__(context)
+        super().__init__(context, UserEntity, User)
 
-    def add_user(self, name, username, password_hash, account_id):        
-        new_user = UserEntity().create(name, username, password_hash, account_id)
+    # Special override because password is handled seperate to general user data
+    def add_user_with_password(self, user: User, password_hash):        
+        new_user = UserEntity().create(user.name, user.username, password_hash, user.account_id)
         self.context.add(new_user)
         self.sync()
 
-        user = self.get_user(username)
-        return user
-
-    def get_user_by_id(self, id):
-        user = self.context.get(UserEntity, id)
         return user
 
     def get_user(self, username) -> User:
