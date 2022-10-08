@@ -16,7 +16,7 @@ class AccountRepository(RepositoryBase):
         if (account == None):
             return None
         
-        mapped = AccountEntity().create(account.name, account.account_number, account.id)
+        mapped = AccountEntity().create(account.name, account.account_number)
         return mapped
 
 

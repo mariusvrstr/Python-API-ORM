@@ -1,6 +1,6 @@
 from test.builders.account_builder import AccountBuilder
 from test.builders.user_builder import UserBuilder
-from src.application.models.account import Account
+from src.application.models.user import User
 from src.application.models.requests.new_user_request import NewUserRequest
 from src.application.services.admin_service import AdminService
 from src.data_access.database.models import database_models
@@ -12,6 +12,10 @@ admin_service = AdminService(context)
 # Build sample objects
 sample_account = AccountBuilder().inoxico().build()
 sample_user = UserBuilder().super_user().build()
+
+def remove(user: User):
+    admin_service.delete_user(user.id)
+    admin_service.delete_account(user.account_id)
 
 def populate():
     new_account = admin_service.add_account(sample_account)
@@ -27,8 +31,10 @@ def main():
         print(found_sample_user)
         
         is_populated = (found_sample_user is not None)
-        if not is_populated:
-            populate()
+        if is_populated:
+            remove(found_sample_user)
+        
+        populate()            
 
         context.commit() # Persist changes if all was successfull
 

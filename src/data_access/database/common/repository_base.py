@@ -39,13 +39,9 @@ class RepositoryBase(ABC):
 
         return self.map_to_business(db_entity)
 
-    def _update(self, updated_entity):
-        # TODO
-        pass
-
-    def _delete(self, entity_to_delete):
-        # TODO
-        pass
+    def delete(self, id):
+        self.context.query(self.db_entity_type).filter(self.db_entity_type.id == id).delete()
+        self.sync()
 
     def sync(self, object = None):
         self.context.flush()

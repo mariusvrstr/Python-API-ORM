@@ -34,3 +34,9 @@ class AdminService():
 
     def get_user(self, username):
         return self.user_repo.get_user(username)
+
+    def delete_user(self, id):
+        return self.user_repo.delete(id)
+
+    def delete_account(self, id):
+        return self.account_repo.delete(id)
