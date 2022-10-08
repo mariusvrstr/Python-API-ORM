@@ -4,7 +4,7 @@ Python based FastAPI and SQLAlchemy example
 ## Design Patterns
 - [X] Repository Pattern - Abstract database access
 - [X] Builder Pattern - Generate sample test with fluent objects
-- [ ] Unit of Work - Ensure there are no partial database changes all in or all out
+- [X] Unit of Work - Ensure there are no partial database changes all in or all out
 
 ## Setup
 1. Run setup.ps1 powershell script
@@ -20,7 +20,8 @@ Python based FastAPI and SQLAlchemy example
 - [ ] GUID Id's
 - [X] Unit of Work (Transactions + Repository Session sharing)
 - [X] Foreign Keys
-- [ ] Crud interactions
+- [X] Crud interactions
+- [X] Get access to new DB ID's before transaction is committed
 - [ ] Code Migrations ([Alembic Offline Migrations](https://alembic.sqlalchemy.org/en/latest/))
 
 ## API Backlog (FastAPI)
