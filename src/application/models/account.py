@@ -1,11 +1,10 @@
+from pydantic import BaseModel
+from typing import Optional
 
-class Account():
-    id = None
-    name = None
-    account_number = None
-
-    def __init__(self, name, account_number, id = None) -> None:
-        self.id = id
-        self.name = name
-        self.account_number = account_number
-
+class Account(BaseModel):
+    id: int
+    name: Optional[str]
+    account_number: str
+    
+    class Config:
+        orm_mode=True

@@ -3,7 +3,7 @@ from src.application.models.account import Account
 class AccountBuilder(Account):
 
     def __init__(self) -> None:
-        super().__init__('', '')
+        super().__init__(id=0, name='', account_number='')
 
     def inoxico(self):
         self.id = 1
@@ -12,6 +12,5 @@ class AccountBuilder(Account):
         return self        
 
     def build(self) -> Account:
-        account = self
-        account.__class__ = Account
+        account = Account(id=self.id, name=self.name, account_number=self.account_number)
         return account

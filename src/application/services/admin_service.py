@@ -18,13 +18,13 @@ class AdminService():
         self.user_repo = UserRepository(context)
 
     def add_account(self, account: Account):
-        return self.account_repo.add(account)
+        return self.account_repo.add_account(account)
 
     def get_account(self, account_number):
         return self.account_repo.get_account(account_number)
 
     def add_user(self, new_user_req: NewUserRequest):
-        user = User(new_user_req.name, new_user_req.username, new_user_req.account_id)
+        user = User(id=-1, name=new_user_req.name, username=new_user_req.username, account_id=new_user_req.account_id)
 
         # Hash Password
         hash_object = hashlib.sha256(new_user_req.password.encode('utf-8'))
